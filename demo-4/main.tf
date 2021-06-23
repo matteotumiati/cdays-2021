@@ -13,7 +13,7 @@ provider "azurerm" {
 }
 
 resource "azurerm_resource_group" "resource_group" {
-  name = "RG-CDAYS2021"
+  name     = "RG-CDAYS2021"
   location = "westeurope"
 }
 
@@ -22,23 +22,23 @@ module "app-service" {
 
   appServiceName = "demowithterraformatcdays2021"
   planName       = "demowithterraformatcdays2021"
-  
+
   resource_group = {
     location = azurerm_resource_group.resource_group.location
-    name = azurerm_resource_group.resource_group.name
+    name     = azurerm_resource_group.resource_group.name
   }
 }
 
 module "sql" {
   source = "./modules/sql"
 
-  sqlName             = "demowithterraformatcdays2021"
-  sqlServerName       = "demowithterraformatcdays2021"
-  username            = var.username
-  password            = var.password
-  
+  sqlName       = "demowithterraformatcdays2021"
+  sqlServerName = "demowithterraformatcdays2021"
+  username      = var.username
+  password      = var.password
+
   resource_group = {
     location = azurerm_resource_group.resource_group.location
-    name = azurerm_resource_group.resource_group.name
+    name     = azurerm_resource_group.resource_group.name
   }
 }
